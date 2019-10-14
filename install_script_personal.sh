@@ -142,9 +142,21 @@ echo "Now go online to GitHub.com > Settings > SSH & GPG Keys > New SSH Key and 
 echo "***************"
 echo "Make sure to create a new GitHub token, as well, and use that as your CLI GitHub Password"
 
+echo -n "Hit any key to continue: "
+read key
+
+echo "Grabbing vim and settings"
+# vim settings
 git clone https://github.com/SachaWheeler/vimrc.git ~/.vim
 cp ~/.vim/vimrc ~/.vimrc
 source ~/.vimrc
+
+echo "Grabbing bash, git and settings"
+# bash / git settings
+git clone https://github.com/SachaWheeler/bash_settings.git ~/.bash-git-prompt
+cp ~/.bash-git-prompt/bash_login ~/.bash_login
+cp ~/.bash-git-prompt/bash_profile ~/.bash_profile
+cp ~/.bash-git-prompt/bashrc ~/.bashrc
 
 # install pip
 pip install virtualenvwrapper
