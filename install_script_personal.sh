@@ -34,14 +34,9 @@ binaries=(
   hub
   rbenv
   ruby-build
-  erlang
-  elixir
   heroku-toolbelt
   macvim
   postgres
-  redis
-  watchman
-  valgrind
 )
 
 echo "Installing packages..."
@@ -135,4 +130,5 @@ source ~/.vimrc
 
 # install pip
 pip install virtualenvwrapper
+mkvirtualenv sacha
 
