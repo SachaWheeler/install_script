@@ -53,6 +53,7 @@ apps=(
   flux
   google-chrome
   iterm2
+  transmission
   psequel
 )
 
