@@ -54,22 +54,11 @@ brew tap caskroom/cask
 # Apps
 apps=(
   codekit
-  dropbox
   firefox
   flux
   google-chrome
-  keka
-  ifunbox
   iterm2
-  licecap
-  nylas-n1
   psequel
-  screenhero
-  skype
-  sketch
-  slack
-  spotify
-  vlc
 )
 
 # Install apps to /Applications
@@ -84,29 +73,21 @@ brew cask install --appdir="/Applications" ${apps[@]}
 echo "Setting Git to use VIM as default editor..."
 git config --global core.editor "vim"
 
-# echo "Running Janus Vim distribution bootstrap script..."
-# curl -L https://bit.ly/janus-bootstrap | bash
-
 ###############################################################################
 # Bash prompt setup (with git setup!)
 ###############################################################################
 
-echo "Setting up ~/.bash_profile..."
-touch ~/.bash_profile
-curl https://gist.githubusercontent.com/rpearce/82dc9f6b96d1a04dcff5/raw/a3b0fdee46085fd26749594e4ebca7d08b39dcd3/.bash_profile > ~/.bash_profile
+echo "Grabbing bash, git and settings"
+# bash / git settings
+git clone https://github.com/SachaWheeler/bash_settings.git ~/.bash-git-prompt
+cp ~/.bash-git-prompt/bash_login ~/.bash_login
+cp ~/.bash-git-prompt/bash_profile ~/.bash_profile
+cp ~/.bash-git-prompt/bashrc ~/.bashrc
 
 echo "Sourcing ~/.bash_profile"
+. ~/.bash_login
 . ~/.bash_profile
-
-###############################################################################
-# Ruby
-###############################################################################
-
-echo "Installing Ruby version 2.3.1..."
-
-rbenv install 2.3.1
-rbenv global 2.3.1
-rbenv rehash
+. ~/.bashrc
 
 ###############################################################################
 # Set up PostgreSQL database
@@ -124,6 +105,7 @@ createdb
 
 echo "Downloading git-completion script"
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+source ~/.git-completion.bash
 
 ###############################################################################
 # Git Config & SSH Key Generation
@@ -150,13 +132,6 @@ echo "Grabbing vim and settings"
 git clone https://github.com/SachaWheeler/vimrc.git ~/.vim
 cp ~/.vim/vimrc ~/.vimrc
 source ~/.vimrc
-
-echo "Grabbing bash, git and settings"
-# bash / git settings
-git clone https://github.com/SachaWheeler/bash_settings.git ~/.bash-git-prompt
-cp ~/.bash-git-prompt/bash_login ~/.bash_login
-cp ~/.bash-git-prompt/bash_profile ~/.bash_profile
-cp ~/.bash-git-prompt/bashrc ~/.bashrc
 
 # install pip
 pip install virtualenvwrapper
